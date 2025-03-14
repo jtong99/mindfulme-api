@@ -5,12 +5,12 @@ use tower_http::{
     sensitive_headers::SetSensitiveHeadersLayer, trace,
 };
 
-use crate::logger;
+// use crate::logger;
 use crate::models;
 use crate::routes;
 
 pub async fn create_app() -> Router {
-    logger::setup();
+    // logger::setup();
 
     models::sync_indexes()
         .await
