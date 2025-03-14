@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  api-dev:
+    build:
+      context: .
+    ports:
+      - "9999:8080"
+    environment:
+      - RUN_MODE=development
+      - RUST_BACKTRACE=1
+    volumes:
+      - .:/app
+      # Don't mount target directory to avoid ownership issues
+      - /app/target
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=rustapi
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
