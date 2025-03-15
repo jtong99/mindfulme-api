@@ -11,3 +11,4 @@
 # Environment variables
 .env
 config/local.json
+meditation_music

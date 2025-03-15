@@ -9,6 +9,7 @@ services:
     environment:
       - RUN_MODE=development
       - RUST_BACKTRACE=1
+      - HUGGINGFACE_API_TOKEN=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
     volumes:
       - .:/app
       # Don't mount target directory to avoid ownership issues

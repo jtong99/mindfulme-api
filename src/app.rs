@@ -21,6 +21,7 @@ pub async fn create_app() -> Router {
         .merge(routes::user::create_route())
         .merge(routes::auth::create_route())  // Add the auth routes
         .merge(routes::checkin::create_route())
+        .merge(routes::meditation::create_route())
         .merge(Router::new().nest(
             "/v1",
             // All public v1 routes will be nested here.
