@@ -27,7 +27,7 @@ tower-http = { version = "0.6", features = [
   "sensitive-headers",
   "cors",
 ] }
-chrono = "0.4.38"
+chrono = "0.4.40"
 async-trait = "0.1.81"
 # Investigate if wither::bson can be used instead and activate this feature.
 bson = { version = "2.10.0", features = ["serde_with", "chrono-0_4"] }
