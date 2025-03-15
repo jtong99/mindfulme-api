@@ -5,7 +5,7 @@ authors = ["ndelvalle <nicolas.delvalle@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-utoipa = { version = "4.2.0", features = ["axum_extras", "chrono"] }
+utoipa = { version = "5.3.1", features = ["axum_extras", "chrono"] }
 utoipa-swagger-ui = { version = "5.0.0", features = ["axum"] }
 config = "0.14.0"
 serde = { version = "1.0.204", features = ["derive"] }
