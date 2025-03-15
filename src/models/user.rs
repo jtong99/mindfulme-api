@@ -95,3 +95,14 @@ where
         .map_err(Error::RunSyncTask)?
         .map_err(Error::HashPassword)
 }
+
+pub async fn verify_password<P, H>(password: P, hash: H) -> Result<bool, Error>
+where
+    P: AsRef<str> + Send + 'static,
+    H: AsRef<str> + Send + 'static,
+{
+    task::spawn_blocking(move || bcrypt::verify(password.as_ref(), hash.as_ref()))
+        .await
+        .map_err(Error::RunSyncTask)?
+        .map_err(|_| Error::InvalidPassword("Invalid password".to_string()))
+}

@@ -40,6 +40,9 @@ pub enum Error {
     
     #[error("{0}")]
     TokenCreation(String),
+
+    #[error("Error invalid password {0}")]
+    InvalidPassword(String),
 }
 
 impl Error {
@@ -67,6 +70,7 @@ impl Error {
             Error::SerializeMongoResponse(_) => (StatusCode::INTERNAL_SERVER_ERROR, 5004),
             Error::RunSyncTask(_) => (StatusCode::INTERNAL_SERVER_ERROR, 5005),
             Error::HashPassword(_) => (StatusCode::INTERNAL_SERVER_ERROR, 5006),
+            Error::InvalidPassword(_) => (StatusCode::UNAUTHORIZED, 40008),
         }
     }
 
@@ -82,6 +86,10 @@ impl Error {
 
     pub fn not_found() -> Self {
         Error::NotFound(NotFound {})
+    }
+
+    pub fn unauthorized_with_message(message: String) -> Self {
+        Error::Authenticate(AuthenticateError::WrongCredentials)
     }
 }
 
